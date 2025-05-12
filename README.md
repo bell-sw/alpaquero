@@ -1,6 +1,6 @@
-# Alpaquita Linux Installer
+# Alpaquero
 
-An installer of Alpaquita and Alpaquita-like Linux distributions.
+An installer for Alpaquita-like Linux distributions.
 
 ## Usage
 
@@ -8,7 +8,7 @@ The installer supports cross-libc installations, i.e. it's possible
 to install a musl Linux instance running on a glibc Linux instance.
 So the code expects that APK key files are shipped with the package.
 
-For that to work put the keys to the `alpaquita_installer/keys` directory.
+For that to work put the keys to the `alpaquero/keys` directory.
 Then build the package using the provided `setup.py` and install it as usual.
 For example:
 
@@ -18,8 +18,9 @@ python setup.py bdist_wheel
 pip install dist/<the generated wheel file>
 ```
 
-To enable installations of Alpaquita-like Linux distributions you may need to update
-the `alpaquita_installer/app/distro.py` file.
+By default, the installer is configured to work with Alpaquita. For installation
+of other Alpaquita-like Linux distributions you may need to update
+the `alpaquero/app/distro.py` file.
 
 The installer operates in 2 modes:
  * interactive mode with a text-based UI (default mode)
@@ -43,7 +44,7 @@ All necessary dependencies are listed in the provided `requirements.txt`:
 python -m venv venv
 . venv/bin/activate
 pip install -r requirements.txt
-alpaquita-installer [args] # or python -m alpaquita_installer [args]
+alpaquero [args] # or python -m alpaquero [args]
 ```
 
 The tests are written using `pytest` and can be run with:

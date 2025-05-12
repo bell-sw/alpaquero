@@ -7,8 +7,8 @@ from typing import Optional
 import pytest
 import pytest_httpserver
 
-from alpaquita_installer.common.events import EventReceiver
-from alpaquita_installer.common.utils import (
+from alpaquero.common.events import EventReceiver
+from alpaquero.common.utils import (
     run_cmd, run_cmd_live, write_file, button_width_for_label,
     validate_proxy_url, validate_apk_repo)
 from .utils import StubEventReceiver

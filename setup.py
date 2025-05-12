@@ -6,9 +6,9 @@
 import setuptools
 
 setuptools.setup(
-    name='alpaquita_installer',
+    name='alpaquero',
     version="0.8.4",
-    description="Installer of Alpaquita-like Linux distributions",
+    description="Installer for Alpaquita-like Linux distributions",
     long_description="",
     author='BellSoft',
     author_email='info@bell-sw.com',
@@ -22,9 +22,9 @@ setuptools.setup(
                  'tests']
     ),
     package_data={
-        'alpaquita_installer': ['EULA', 'keys/**/*'],
+        'alpaquero': ['EULA', 'keys/**/*'],
     },
     scripts=[
-          'bin/alpaquita-installer',
+          'bin/alpaquero',
         ],
     )

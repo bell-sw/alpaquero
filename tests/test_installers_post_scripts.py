@@ -3,8 +3,8 @@
 
 import pytest
 
-from alpaquita_installer.installers.installer import InstallerException
-from alpaquita_installer.installers.post_scripts import PostScriptsInstaller
+from alpaquero.installers.installer import InstallerException
+from alpaquero.installers.post_scripts import PostScriptsInstaller
 from .utils import new_installer, StubEventReceiver
 
 

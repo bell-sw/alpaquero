@@ -3,7 +3,7 @@
 
 import pytest
 
-from alpaquita_installer.installers.utils import (
+from alpaquero.installers.utils import (
     read_key_or_fail, str_size_to_bytes,
     validate_types_of_elements, read_list)
 

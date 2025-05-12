@@ -105,7 +105,7 @@ class BaseView(WidgetWrap):
 
     def keypress(self, size, key):
         key = super().keypress(size, key)
-        # Alpaquita: as we use the LoadingDialog for tasks which shouldn't be accidentally
+        # Alpaquero: as we use the LoadingDialog for tasks which shouldn't be accidentally
         # stopped by pressing the ESC key
 #        if key == 'esc':
 #            if hasattr(self._w, 'bottom_w'):

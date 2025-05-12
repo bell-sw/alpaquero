@@ -3,8 +3,8 @@
 
 import pytest
 
-from alpaquita_installer.installers.installer import InstallerException
-from alpaquita_installer.installers.services import ServicesInstaller
+from alpaquero.installers.installer import InstallerException
+from alpaquero.installers.services import ServicesInstaller
 from .utils import new_installer
 
 

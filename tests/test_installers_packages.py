@@ -3,9 +3,9 @@
 
 import pytest
 
-from alpaquita_installer.common.apk import APKManager
-from alpaquita_installer.installers.installer import InstallerException
-from alpaquita_installer.installers.packages import PackagesInstaller
+from alpaquero.common.apk import APKManager
+from alpaquero.installers.installer import InstallerException
+from alpaquero.installers.packages import PackagesInstaller
 from .utils import new_installer, StubEventReceiver
 
 

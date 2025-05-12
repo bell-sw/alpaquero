@@ -5,9 +5,9 @@ from typing import Optional
 
 import pytest
 
-from alpaquita_installer.installers.installer import InstallerException
-from alpaquita_installer.installers.bootloader import BootloaderInstaller
-from alpaquita_installer.common.utils import Arch
+from alpaquero.installers.installer import InstallerException
+from alpaquero.installers.bootloader import BootloaderInstaller
+from alpaquero.common.utils import Arch
 from .utils import new_installer
 
 

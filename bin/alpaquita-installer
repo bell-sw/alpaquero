@@ -1,8 +1,0 @@
-#!/bin/sh
-
-#
-# SPDX-FileCopyrightText: 2022 BellSoft
-# SPDX-License-Identifier:  AGPL-3.0-or-later
-#
-
-python3 -m alpaquita_installer "$@"

@@ -5,9 +5,9 @@ import os
 
 import pytest
 
-from alpaquita_installer.common.utils import run_cmd
-from alpaquita_installer.smanager.manager import StorageManager
-from alpaquita_installer.smanager.file_system import FSType
+from alpaquero.common.utils import run_cmd
+from alpaquero.smanager.manager import StorageManager
+from alpaquero.smanager.file_system import FSType
 
 MB = 1024 * 1024
 

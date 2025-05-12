@@ -7,13 +7,13 @@ from typing import TYPE_CHECKING
 import yaml
 import pytest
 
-from alpaquita_installer.installers.installer import InstallerException
-from alpaquita_installer.installers.storage import StorageInstaller
-from alpaquita_installer.smanager.disk import Disk
+from alpaquero.installers.installer import InstallerException
+from alpaquero.installers.storage import StorageInstaller
+from alpaquero.smanager.disk import Disk
 from .utils import new_installer
 
 if TYPE_CHECKING:
-    from alpaquita_installer.smanager.manager import StorageManager
+    from alpaquero.smanager.manager import StorageManager
 
 MB = 1024 * 1024
 GB = 1024 * 1024 * 1024
@@ -26,7 +26,7 @@ def mock_host_disks(monkeypatch):
         # We don't check that the block device file actually exists
         super(Disk, self).__init__(manager=manager, id=id, size=DISK_SIZE)
 
-    monkeypatch.setattr('alpaquita_installer.smanager.disk.Disk.__init__', init)
+    monkeypatch.setattr('alpaquero.smanager.disk.Disk.__init__', init)
 
 
 def create_installer(config: dict) -> StorageInstaller:

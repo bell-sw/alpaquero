@@ -3,8 +3,8 @@
 
 import pytest
 
-from alpaquita_installer.installers.installer import InstallerException
-from alpaquita_installer.installers.timezone import TimezoneInstaller
+from alpaquero.installers.installer import InstallerException
+from alpaquero.installers.timezone import TimezoneInstaller
 from .utils import new_installer
 
 

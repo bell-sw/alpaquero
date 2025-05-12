@@ -5,7 +5,7 @@ import os
 
 import pytest
 
-from alpaquita_installer.common.apk import APKManager
+from alpaquero.common.apk import APKManager
 from .utils import StubEventReceiver
 
 

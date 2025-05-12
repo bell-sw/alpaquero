@@ -1,6 +1,6 @@
 # Automating the Installation
 
-The `alpaquita-installer` offers a means to automate the installation process. For that to work
+The `alpaquero` offers a means to automate the installation process. For that to work
 one should create a file describing the installation and pass it to the installer using the `-f` option.
 
 This file is of the YAML format. It describes the installation with parameters provided below in this document.
