@@ -21,8 +21,7 @@ class RepoController(Controller):
     def __init__(self, app):
         super().__init__(app)
         self._repo_base_url = DISTRO_REPO_BASE_URL
-        ver_id = self.get_os_release().get('VERSION_ID', '').split('.')
-        self._release = ver_id[0] if len(ver_id) > 1 and ver_id[0] else 'stream'
+        self._version_id = self.get_os_release()['VERSION_ID']
         self._libc_type = 'musl' if os.path.exists(f"/lib/ld-musl-{app.arch.value}.so.1") else 'glibc'
         self._host_libc_type = self._libc_type
         self._validated_repo_pairs: Set[Tuple[str, str]] = set()
@@ -71,7 +70,7 @@ class RepoController(Controller):
         repos = []
         for name in ['core', 'universe']:
             repos.append(urllib.parse.quote(
-                f'{url}/{DISTRO}/{libc}/{self._release}/{name}',
+                f'{url}/{DISTRO}/{libc}/{self._version_id}/{name}',
                 safe='/:'))
         return repos
 
