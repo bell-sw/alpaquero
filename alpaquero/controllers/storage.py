@@ -65,8 +65,8 @@ class StorageController(Controller):
     # Size of /boot
     BOOT_SIZE = 512 * MB
     # A bare installation takes less than 100M.
-    # All liberica{8,11,17} and liberica{8,11,17} lite take < 1.2G.
-    # liberica{11,17}-nik both take ~ 1G.
+    # All openjdk{8,11,17} and openjdk{8,11,17} lite take < 1.2G.
+    # openjdk{11,17}-nik both take ~ 1G.
     ROOT_MIN_SIZE = 4 * GB
 
     def __init__(self, app: Application):
