@@ -29,7 +29,7 @@ from alpaquero.installers.post_scripts import PostScriptsInstaller
 from alpaquero.installers.installer import InstallerException
 from alpaquero.common.apk import APKManager
 from alpaquero.common.events import EventReceiver
-from alpaquero.common.utils import DEFAULT_CONFIG_FILE, Arch
+from alpaquero.common.utils import DEFAULT_CONFIG_FILE, Arch, drop_key
 from .controller import Controller
 
 if TYPE_CHECKING:
@@ -63,12 +63,15 @@ class BaseInstallerController(Controller, EventReceiver):
         except Exception as err:
             raise InstallerException(f'An error occurred: {err}')
 
-    def _copy_yaml_config(self):
+    def _copy_yaml_config(self, config: dict):
         copied_config_rel = os.path.join('/root', os.path.basename(DEFAULT_CONFIG_FILE))
         self.start_event((f"Saving the config file for this installation to "
                           f"'{copied_config_rel}' on the new system."))
         copied_config_abs = os.path.join(self.TARGET_ROOT, copied_config_rel.lstrip('/'))
-        shutil.copy(self._config_file, copied_config_abs)
+
+        with open(copied_config_abs, 'w') as f:
+            yaml.safe_dump(config, f)
+
         os.chown(copied_config_abs, 0, 0)
         os.chmod(copied_config_abs, stat.S_IRUSR | stat.S_IWUSR)
 
@@ -128,7 +131,10 @@ class BaseInstallerController(Controller, EventReceiver):
             i.post_apply()
 
         if self._app.copy_config:
-            self._copy_yaml_config()
+            # We assume config data is not suppossed to be used anywhere else
+            # after this, so we can safely alter it.
+            drop_key(config, 'crypto_passphrase')
+            self._copy_yaml_config(config)
 
         for i in reversed(installers):
             i.cleanup()

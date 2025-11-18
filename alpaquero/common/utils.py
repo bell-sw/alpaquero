@@ -135,3 +135,14 @@ def validate_apk_repo(url: str, keys_dir: str, timeout: float):
 def validate_apk_repos(urls: Iterable[str], keys_dir: str, timeout: float):
     for url in urls:
         validate_apk_repo(url=url, keys_dir=keys_dir, timeout=timeout)
+
+def drop_key(data, key):
+    if isinstance(data, list):
+        for item in data:
+            drop_key(item, key)
+    elif isinstance(data, dict):
+        if key in data:
+            del data[key]
+
+        for value in data.values():
+            drop_key(value, key)

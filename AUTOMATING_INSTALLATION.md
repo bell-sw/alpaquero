@@ -7,6 +7,8 @@ This file is of the YAML format. It describes the installation with parameters p
 
 The installer saves the YAML file for the current installation to `/root/setup.yaml` on the installed system.
 This file can be used to repeat the installation on similar systems and/or as a starting point for customizations.
+Due to security reasons sensitive information (such as `crypto_passphrase`) is not saved to `/root/setup.yaml`,
+so it should be added to the file before repeating the installation.
 
 ## Mandatory parameters
 
