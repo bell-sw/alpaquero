@@ -2,7 +2,7 @@
 #  SPDX-License-Identifier:  AGPL-3.0-or-later
 
 from typing import Optional
-import crypt
+import passlib.hash
 import logging
 
 import yaml
@@ -49,9 +49,19 @@ class UserController(Controller):
 
     def to_yaml(self) -> str:
         user_data = {'name': self._model.name,
-                     'password': crypt.crypt(self._model.password),
+                     'password': pwhash(self._model.password),
                      'gecos': self._model.gecos,
                      'is_admin': self._model.is_admin}
         yaml_data = yaml.dump({'users': [user_data]})
         log.debug('export to yaml: {}'.format(yaml_data))
         return yaml_data
+
+# crypt(3) wrapper was removed in python 3.13, so do it manually.
+# musl 1.2.6 only supports 1, 2, 5, 6 (see src/crypt/crypt_r.c),
+# so stick with 6 (sha512) as the best currently available option.
+# Its default number of rounds for crypt(3) is 5000 (not spelled
+# out in the salt string), which is too low for modern hardware.
+# passlib's default (if rounds argument is omitted) is much
+# higher, but for now stick with maximum backward compatibility.
+def pwhash(cleartext: str) -> str:
+    return passlib.hash.sha512_crypt.hash(cleartext, rounds=5000)
