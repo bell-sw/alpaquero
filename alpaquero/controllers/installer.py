@@ -174,7 +174,6 @@ class InstallerController(BaseInstallerController):
     def __init__(self, app: Application, create_config=True, config_file=DEFAULT_CONFIG_FILE):
         super().__init__(app, create_config, config_file)
         self._view = InstallerView(self, iso_mode=self._app.iso_mode)
-        self._eloop = asyncio.get_event_loop()
 
     def create_config(self):
         self.add_log_line(f'Creating config {self._config_file} file')
@@ -198,13 +197,13 @@ class InstallerController(BaseInstallerController):
         self._view.done()
 
     def add_log_line(self, msg):
-        self._eloop.call_soon_threadsafe(self._add_log_line, msg)
+        self._app.aio_loop.call_soon_threadsafe(self._add_log_line, msg)
 
     def start_event(self, msg):
-        self._eloop.call_soon_threadsafe(self._event_start, msg)
+        self._app.aio_loop.call_soon_threadsafe(self._event_start, msg)
 
     def stop_event(self):
-        self._eloop.call_soon_threadsafe(self._event_finish)
+        self._app.aio_loop.call_soon_threadsafe(self._event_finish)
 
     def _event_start(self, msg):
         self._add_log_line(msg)
