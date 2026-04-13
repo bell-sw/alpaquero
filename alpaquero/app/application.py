@@ -208,7 +208,8 @@ class Application:
         screen.set_terminal_properties(colors=self._colors)
 
         atexit.register(self.cleanup)
-        self.aio_loop = asyncio.get_event_loop()
+        self.aio_runner = asyncio.Runner()
+        self.aio_loop = self.aio_runner.get_loop()
         self.urwid_loop = urwid.MainLoop(widget=self.ui, screen=screen,
                                          handle_mouse=False, pop_ups=True,
                                          event_loop=urwid.AsyncioEventLoop(loop=self.aio_loop))
